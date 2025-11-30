@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emily & Tigran | August 28, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,278 +15,306 @@
         }
 
         :root {
-            --primary-color: #d64545;
-            --text-light: #ffffff;
-            --text-dark: #333333;
-            --overlay-color: rgba(0, 0, 0, 0.3);
+            --primary-color: #ffff;
+            --text-dark: #fffffff4;
+            --bg-light: #4934ff;
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'IBM Plex Mono', monospace;
             color: var(--text-dark);
             line-height: 1.6;
-        }
-
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(var(--overlay-color), var(--overlay-color)),
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
+            font-size: 14px;
             padding: 2rem;
-            background: rgba(214, 69, 69, 0.85);
-            border-radius: 0;
+            background-color: #4934ff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem;
+            border: 1px solid var(--text-dark);
+            background-color: var(--bg-light);
+            min-height: calc(100vh - 4rem);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .col-3 { grid-column: span 3; }
+        .col-4 { grid-column: span 4; }
+        .col-5 { grid-column: span 5; }
+        .col-7 { grid-column: span 7; }
+        .col-9 { grid-column: span 9; }
+        .col-12 { grid-column: span 12; }
+
+        .text-right {
+            text-align: right;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
+            font-size: 3rem;
+            font-weight: 400;
+            margin: 0;
+            line-height: 1;
         }
 
-        .date {
+        h2 {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
+            font-weight: 400;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .spacer-lg {
+            height: 4rem;
+        }
+
+        .spacer-md {
+            height: 2rem;
         }
 
         .countdown {
-            font-size: 2rem;
-            margin-top: 1.5rem;
-            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            margin: 1rem 0;
         }
 
         .countdown span {
-            margin: 0 0.5rem;
+            margin: 0 0.3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
         }
 
         .section {
-            padding: 4rem 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-weight: 300;
             cursor: pointer;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            position: relative;
+            user-select: none;
         }
 
         .section h2::after {
-            content: '▼';
-            position: absolute;
-            right: 0;
-            font-size: 1.2rem;
+            content: ' ▼';
+            font-size: 0.8rem;
+            opacity: 0.5;
             transition: transform 0.3s ease;
+            display: inline-block;
         }
 
-        .section h2.collapsed::after {
+        .section.collapsed h2::after {
             transform: rotate(-90deg);
         }
 
         .section-content {
-            max-height: 2000px;
+            max-height: 5000px;
             overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.4s ease;
+            transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
             opacity: 1;
+            margin-top: 2rem;
         }
 
         .section-content.hidden {
             max-height: 0;
             opacity: 0;
-        }
-
-        .welcome {
-            background: #f9f9f9;
-        }
-
-        .welcome p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .schedule {
-            background: #ffffff;
+            margin-top: 0;
         }
 
         .schedule-item {
             margin-bottom: 2rem;
-            padding: 1.5rem;
-            border-left: 4px solid var(--primary-color);
-            background: #f9f9f9;
         }
 
         .schedule-item h3 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
+            font-weight: 500;
             margin-bottom: 0.5rem;
         }
 
-        .rsvp {
-            background: #f9f9f9;
-            text-align: center;
+        .faq-item {
+            margin-bottom: 1.5rem;
         }
 
-        .form-embed {
-            margin-top: 2rem;
-            min-height: 600px;
+        .faq-item h3 {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
         }
 
         iframe {
             width: 100%;
             min-height: 600px;
             border: none;
-        }
-
-        .faq {
-            background: #ffffff;
-        }
-
-        .faq-item {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .faq-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+            margin-top: 1rem;
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+                min-height: calc(100vh - 2rem);
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .col-3, .col-4, .col-5, .col-7, .col-9, .col-12 {
+                grid-column: span 1;
+            }
+
             h1 {
                 font-size: 2rem;
             }
 
-            .date {
+            h2 {
                 font-size: 1.2rem;
             }
 
-            .countdown {
-                font-size: 1.5rem;
-            }
-
-            .section h2 {
-                font-size: 2rem;
-            }
-
-            .hero-content {
-                padding: 1.5rem;
+            .text-right {
+                text-align: left;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Emily Chen & Tigran Demirjian</h1>
-            <p class="date">August 28, 2026 @ 11:00 AM</p>
-            <div class="countdown" id="countdown">
-                <div><span id="days">000</span> days</div>
-                <div><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></div>
+    <div class="container">
+    <!-- Header -->
+    <div class="grid">
+        <div class="col-9">
+            <h1>Emily Chen &<br>Tigran Demurjian</h1>
+        </div>
+        <div class="col-3">
+            <div class="text-right">
+                08—28—2026<br>
+                11:00 AM
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Welcome Section -->
-    <section class="section welcome">
-        <h2 onclick="toggleSection(this)">Welcome</h2>
-        <div class="section-content">
-            <p>You're invited to celebrate the marriage of Emily Chen and Tigran Demirjian! 
-            We're so excited to share this special day with you. Join us for a weekend of 
-            love, laughter, and unforgettable memories as we begin our journey together.</p>
+    <div class="spacer-lg"></div>
+
+    <!-- Hero Section -->
+    <div class="grid">
+        <div class="col-5">
+            <img src="cake_proofs-14.jpg" alt="Emily and Tigran" class="hero-image">
         </div>
-    </section>
+        <div class="col-7">
+            <div class="text-right">
+                <h2>You're Invited<br><br>A Wedding Celebration</h2>
+                <div class="spacer-md"></div>
+                <div class="countdown" id="countdown">
+                    <span id="days">000</span> days
+                    <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer-lg"></div>
+
+    <!-- Welcome -->
+    <div class="grid">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <p>It's finally happening. And you're invited, because you're very special to us.</p>
+            <p>blah blah</p>
+        </div>
+    </div>
+
+    <div class="spacer-lg"></div>
 
     <!-- Schedule Section -->
-    <section class="section schedule">
-        <h2 onclick="toggleSection(this)">The Plan</h2>
-        <div class="section-content">
-            <div class="schedule-item">
-                <h3>Thursday, August 27, 2026</h3>
-                <p><strong>7:00 PM - Welcome Dinner</strong><br>
-                Join us for a casual welcome dinner at [Restaurant Name]. Come hungry and ready to mingle!</p>
-            </div>
-            <div class="schedule-item">
-                <h3>Friday, August 28, 2026</h3>
-                <p><strong>11:00 AM - Ceremony</strong><br>
-                [Venue Name and Address]<br>
-                The ceremony will begin promptly at 11:00 AM. Please arrive 15 minutes early.</p>
-                
-                <p><strong>12:30 PM - Cocktail Hour</strong><br>
-                Enjoy drinks and appetizers while we take photos.</p>
-                
-                <p><strong>2:00 PM - Reception</strong><br>
-                Dinner, dancing, and celebration!</p>
-                
-                <p><strong>6:00 PM - After Party</strong><br>
-                For those who want to keep the party going!</p>
+    <div class="grid section" onclick="toggleSection(this)">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <h2>Schedule</h2>
+            <div class="section-content">
+                <div class="schedule-item">
+                    <h3>Thursday, August 27, 2026</h3>
+                    <p><strong>7:00 PM — Welcome Dinner</strong><br>
+                    Join us for a casual welcome dinner at [Restaurant Name]. Come hungry and ready to mingle!</p>
+                </div>
+                <div class="schedule-item">
+                    <h3>Friday, August 28, 2026</h3>
+                    <p><strong>11:00 AM — Ceremony</strong><br>
+                    [Venue Name and Address]<br>
+                    Please arrive 15 minutes early.</p>
+                    
+                    <p><strong>12:30 PM — Cocktail Hour</strong><br>
+                    Enjoy drinks and appetizers while we take photos.</p>
+                    
+                    <p><strong>2:00 PM — Reception</strong><br>
+                    Dinner, dancing, and celebration!</p>
+                    
+                    <p><strong>6:00 PM — After Party</strong><br>
+                    For those who want to keep the party going!</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="spacer-lg"></div>
 
     <!-- RSVP Section -->
-    <section class="section rsvp">
-        <h2 onclick="toggleSection(this)">RSVP</h2>
-        <div class="section-content">
-            <p>Please RSVP by July 1, 2026</p>
-            <div class="form-embed">
-                <!-- Replace with your Google Form embed URL -->
-                <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" 
-                        frameborder="0" marginheight="0" marginwidth="0">
-                    Loading…
-                </iframe>
+    <div class="grid section" onclick="toggleSection(this)">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <h2>RSVP</h2>
+            <div class="section-content">
+                <p>Please RSVP by July 1, 2026</p>
+                <iframe data-tally-src="https://tally.so/embed/Gxeqqe?alignLeft=1&dynamicHeight=1" loading="lazy" width="100%" height="1712" frameborder="0" marginheight="0" marginwidth="0" title="RSVP to Emily & Tigran's Wedding Retreat"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="spacer-lg"></div>
 
     <!-- FAQ Section -->
-    <section class="section faq">
-        <h2 onclick="toggleSection(this)">FAQs</h2>
-        <div class="section-content">
-            <div class="faq-item">
-                <h3>What should I wear?</h3>
-                <p>Semi-formal attire. Think cocktail dresses and suits. We want you to be comfortable and feel great!</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I bring a plus-one?</h3>
-                <p>If your invitation includes a plus-one, their name will be listed. If you have questions, please reach out to us directly.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Where should I stay?</h3>
-                <p>We have room blocks at [Hotel Name] and [Hotel Name]. Booking information can be found in your invitation.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Will there be parking?</h3>
-                <p>Yes! Free parking is available at the venue. Valet service will also be provided.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Are kids welcome?</h3>
-                <p>We love your little ones, but we've decided to keep our wedding an adults-only celebration.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What's on the menu?</h3>
-                <p>We'll be serving a delicious dinner with vegetarian and vegan options. Please let us know about any dietary restrictions in your RSVP.</p>
+    <div class="grid section" onclick="toggleSection(this)">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <h2>Frequently Asked Questions</h2>
+            <div class="section-content">
+                <div class="faq-item">
+                    <h3>What should I wear?</h3>
+                    <p>Semi-formal attire. Think cocktail dresses and suits. We want you to be comfortable and feel great!</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I bring a plus-one?</h3>
+                    <p>If your invitation includes a plus-one, their name will be listed. If you have questions, please reach out to us directly.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Where should I stay?</h3>
+                    <p>We have room blocks at [Hotel Name] and [Hotel Name]. Booking information can be found in your invitation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Will there be parking?</h3>
+                    <p>Yes! Free parking is available at the venue. Valet service will also be provided.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Are kids welcome?</h3>
+                    <p>We love your little ones, but we've decided to keep our wedding an adults-only celebration.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What's on the menu?</h3>
+                    <p>We'll be serving a delicious dinner with vegetarian and vegan options. Please let us know about any dietary restrictions in your RSVP.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="spacer-lg"></div>
 
     <script>
         // Countdown Timer
@@ -303,7 +334,7 @@
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = "<div>We're Married! 💕</div>";
+                document.getElementById('countdown').innerHTML = "We're Married! 💕";
             }
         }
 
@@ -311,9 +342,9 @@
         updateCountdown();
 
         // Toggle Sections
-        function toggleSection(header) {
-            const content = header.nextElementSibling;
-            header.classList.toggle('collapsed');
+        function toggleSection(element) {
+            const content = element.querySelector('.section-content');
+            element.classList.toggle('collapsed');
             content.classList.toggle('hidden');
         }
     </script>
