@@ -109,11 +109,13 @@
         }
 
         .section h2::after {
-            content: ' ▼';
-            font-size: 0.8rem;
+            content: '▼';
+            font-size: 1.125rem;
             opacity: 0.5;
             transition: transform 0.3s ease;
             display: inline-block;
+            margin-left: 0.5rem;
+            color: #ff784f;
         }
 
         .section.collapsed h2::after {
@@ -319,11 +321,11 @@
 
 
 
-    <div class="grid section" onclick="toggleSection(this)" >
+    <div class="grid section collapsed" onclick="toggleSection(this)" >
         <div class="col-3"></div>
         <div class="col-9">
             <h2>The Venue</h2>
-            <div class="section-content">
+            <div class="section-content hidden">
                 <div class="venue">
                     <h3>The Venture Retreat Center in Pescadero</h3>
                     <p><strong>TBD TBD....</strong><br>
@@ -334,11 +336,11 @@
     </div>
 
     <!-- FAQ Section -->
-    <div class="grid section" onclick="toggleSection(this)" >
+    <div class="grid section collapsed" onclick="toggleSection(this)" >
         <div class="col-3"></div>
         <div class="col-9">
-            <h2>What You Might Want to Know</h2>
-            <div class="section-content">
+            <h2>FAQs</h2>
+            <div class="section-content hidden">
                 <div class="faq-item">
                     <h3>What should I wear?</h3>
                     <p>Semi-formal attire you can dance in. Granola or Western-themed touches, or even full on cowboy, are encouraged.</p>
