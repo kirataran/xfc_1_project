@@ -270,6 +270,71 @@
             text-decoration: underline;
         }
 
+        /* The Essentials */
+        .essentials {
+            margin-top: 0.5rem;
+        }
+
+        .essential-row {
+            display: flex;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 120, 79, 0.25);
+        }
+
+        .essential-label {
+            min-width: 110px;
+            color: #ff784f;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .essential-value {
+            flex: 1;
+        }
+
+        .essential-value a {
+            color: #ff784f;
+            text-decoration: underline;
+        }
+
+        .mini-button {
+            display: inline-block;
+            padding: 0.15rem 0.8rem;
+            background-color: var(--border);
+            color: var(--text-dark) !important;
+            text-decoration: none !important;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .mini-button:hover {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .registry-options p {
+            margin-bottom: 0.6rem;
+        }
+
+        .registry-options a {
+            color: #ff784f;
+            text-decoration: underline;
+        }
+
+        .registry-note {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-left: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .essential-row {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -283,7 +348,7 @@
         <div class="col-3">
             <div class="text-right">
                 August 28th, 2026<br>
-                Pescadero, California<br>
+                Venture Retreat Center, Pescadero, CA<br>
                 11:00 AM
             </div>
         </div>
@@ -301,6 +366,43 @@
                     <span id="days">000</span> days
                     <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
                 </div>-->
+        </div>
+    </div>
+
+
+    <!-- The Essentials -->
+    <div class="grid">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <h2>The Essentials</h2>
+            <div class="section-content">
+                <div class="essentials">
+                    <div class="essential-row">
+                        <span class="essential-label">Where</span>
+                        <span class="essential-value"><a href="https://maps.app.goo.gl/syrADpouTV6zAw7R6" target="_blank" rel="noopener">Venture Retreat Center</a></span>
+                    </div>
+                    <div class="essential-row">
+                        <span class="essential-label">When</span>
+                        <span class="essential-value">Friday, August 28th, 2026</span>
+                    </div>
+                    <div class="essential-row">
+                        <span class="essential-label">Ceremony</span>
+                        <span class="essential-value">11:00 AM on Friday</span>
+                    </div>
+                    <div class="essential-row">
+                        <span class="essential-label">Attire</span>
+                        <span class="essential-value">Semi-formal</span>
+                    </div>
+                    <div class="essential-row">
+                        <span class="essential-label">Registry</span>
+                        <span class="essential-value"><a href="#registry" class="mini-button" onclick="expandSection('registry', event)">HERE</a></span>
+                    </div>
+                    <div class="essential-row">
+                        <span class="essential-label">FAQ</span>
+                        <span class="essential-value"><a href="#faqs" class="mini-button" onclick="expandSection('faqs', event)">HERE</a></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -367,14 +469,14 @@
     </div>
 
     <!-- FAQ Section -->
-    <div class="grid section collapsed" onclick="toggleSection(this)" >
+    <div id="faqs" class="grid section collapsed" onclick="toggleSection(this)" >
         <div class="col-3"></div>
         <div class="col-9">
             <h2>FAQs</h2>
             <div class="section-content hidden">
                 <div class="faq-item">
                     <h3>What should I wear?</h3>
-                    <p>Semi-formal attire you can dance in. Granola or Western-themed touches, or even full on cowboy, are encouraged.</p>
+                    <p>Semi-formal attire you can dance in. Granola or Western-themed touches, or even full on cowboy, are welcome.</p>
                 </div>
                 <div class="faq-item">
                     <h3>Are we going to be camping?</h3>
@@ -414,6 +516,22 @@
                 <div class="faq-item">
                     <h3>Do we need to rent a car?</h3>
                     <p>Yes. The venue is about one hour south of San Francisco International Airport, and we recommend renting a car for the easiest travel to and from the retreat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registry Section -->
+    <div id="registry" class="grid section collapsed" onclick="toggleSection(this)" >
+        <div class="col-3"></div>
+        <div class="col-9">
+            <h2>Registry</h2>
+            <div class="section-content hidden">
+                <p style="max-width: 700px;">We're lucky to already have what we need at home, so instead of a registry we're saving for a two-week honeymoon in Asia. If you'd like to chip in, you can do so below. Thank you.</p>
+                <div class="registry-options">
+                    <p><strong>Venmo</strong> &ndash; <a href="https://venmo.com/u/tigrantigran" target="_blank" rel="noopener" onclick="event.stopPropagation()">@tigrantigran</a></p>
+                    <p><strong>Zelle</strong> &ndash; 415-889-7761</p>
+                    <p><strong>PayPal</strong> &ndash; <a href="https://paypal.me/tigrandemurjian" target="_blank" rel="noopener" onclick="event.stopPropagation()">@tigrandemurjian</a><span class="registry-note">(Please pick "Friends and Family" when prompted, so the full amount comes through.)</span></p>
                 </div>
             </div>
         </div>
@@ -483,6 +601,17 @@
             const content = element.querySelector('.section-content');
             element.classList.toggle('collapsed');
             content.classList.toggle('hidden');
+        }
+
+        // Expand a specific section (used by in-page "HERE" links)
+        function expandSection(id, event) {
+            if (event) event.preventDefault();
+            const section = document.getElementById(id);
+            if (!section) return;
+            section.classList.remove('collapsed');
+            const content = section.querySelector('.section-content');
+            if (content) content.classList.remove('hidden');
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </body>
